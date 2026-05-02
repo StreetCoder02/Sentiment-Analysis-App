@@ -2,7 +2,7 @@
 
 A full-stack sentiment analysis application that analyzes the emotional tone and sentiment of text content from multiple sources. Built with React, Express, and Google Cloud APIs for production-ready performance.
 
-**Live Demo**: [Deploy on Netlify](#deployment) | **GitHub**: [StreetCoder02/Sentiment-Analysis-App](https://github.com/StreetCoder02/Sentiment-Analysis-App)
+**Status**: In active development — local setup instructions below | **GitHub**: [StreetCoder02/Sentiment-Analysis-App](https://github.com/StreetCoder02/Sentiment-Analysis-App)
 
 ---
 
