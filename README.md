@@ -301,7 +301,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 🙋 Support
 
-- 📧 Email: [Your Email]
+- 📧 Email: apsinghjp0516@gmail.com
 - 🐛 Issues: [GitHub Issues](https://github.com/StreetCoder02/Sentiment-Analysis-App/issues)
 - 💬 Discussions: [GitHub Discussions](https://github.com/StreetCoder02/Sentiment-Analysis-App/discussions)
 
@@ -336,6 +336,6 @@ Perfect for:
 
 ---
 
-**Made with ❤️ by Aaryan**
+**Made with ❤️ by Aniruddha**
 
 ⭐ If you find this project useful, please give it a star!
