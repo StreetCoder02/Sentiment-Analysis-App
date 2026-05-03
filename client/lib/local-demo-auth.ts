@@ -57,7 +57,7 @@ class LocalDemoAuth {
     
     return {
       uid: `demo_${randomId}_${timestamp}`,
-      email: `demo-user-${randomId}@sentimentai.local`,
+      email: `demo-user-${randomId}@sentri.local`,
       displayName: `Demo User ${randomId.substring(0, 4).toUpperCase()}`,
       createdAt: new Date()
     };

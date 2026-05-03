@@ -65,11 +65,11 @@ export default function Login() {
       if (isSignUp) {
         logAuthEvent('email', 'signup');
         await createUserWithEmailAndPassword(auth, email, password);
-        setSuccess("Account created successfully! Welcome to SentimentAI!");
+        setSuccess("Account created successfully! Welcome to Sentri AI!");
       } else {
         logAuthEvent('email', 'signin');
         await signInWithEmailAndPassword(auth, email, password);
-        setSuccess("Welcome back to SentimentAI!");
+        setSuccess("Welcome back to Sentri AI!");
       }
     } catch (err: any) {
       setError(err.message);
@@ -102,7 +102,7 @@ export default function Login() {
       }
 
       const result = await signInWithPopup(auth, authProvider);
-      setSuccess(`Welcome to SentimentAI via ${provider}!`);
+      setSuccess(`Welcome to Sentri AI via ${provider}!`);
       
       if (analytics) {
         logEvent(analytics, 'login', {
@@ -208,7 +208,7 @@ export default function Login() {
             animate={{ opacity: [0.5, 1, 0.5] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
-            Initializing SentimentAI...
+            Initializing Sentri AI...
           </motion.p>
         </motion.div>
       </div>
@@ -274,7 +274,7 @@ export default function Login() {
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.6 }}
             >
-              SentimentAI
+              Sentri AI
             </motion.h1>
             <motion.p
               className="text-gray-400 text-lg"
@@ -306,7 +306,7 @@ export default function Login() {
                     >
                       <Crown className="h-6 w-6 text-rcb-red-bright" />
                     </motion.div>
-                    Welcome to SentimentAI
+                    Welcome to Sentri AI
                   </CardTitle>
                   <CardDescription className="text-gray-400 mt-2">
                     Experience the future of emotion analysis

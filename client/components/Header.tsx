@@ -17,8 +17,8 @@ export default function Header() {
             <Brain className="h-6 w-6 text-white" />
           </div>
           <div>
-            <div className="text-white font-semibold">SentimentAI</div>
-            <div className="text-xs text-gray-400">AI-Powered Sentiment</div>
+            <div className="text-white font-semibold">Sentri AI</div>
+            <div className="text-xs text-gray-400">Multilingual Sentiment Analysis</div>
           </div>
         </Link>
 

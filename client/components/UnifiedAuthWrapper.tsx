@@ -107,7 +107,7 @@ export default function UnifiedAuthWrapper({ children }: UnifiedAuthWrapperProps
             animate={{ opacity: [0.5, 1, 0.5] }}
             transition={{ duration: 1.5, repeat: Infinity }}
           >
-            Initializing SentimentAI...
+            Initializing Sentri AI...
           </motion.p>
           <motion.p 
             className="text-gray-400 text-sm mt-2"

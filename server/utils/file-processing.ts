@@ -223,7 +223,7 @@ export async function extractTextFromURL(url: string): Promise<string> {
     const response = await axios.get(url, {
       timeout: 10000, // 10 second timeout
       headers: {
-        'User-Agent': 'SentimentAI-Bot/1.0'
+        'User-Agent': 'Sentri-AI-Bot/1.0'
       }
     });
 

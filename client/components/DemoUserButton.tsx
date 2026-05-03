@@ -32,7 +32,7 @@ export default function DemoUserButton({ isLoading, onSuccess, onError }: DemoUs
       // Try Firebase authentication for production environments
       console.log('Production environment - attempting Firebase demo user creation...');
       const randomId = Math.random().toString(36).substring(7);
-      const demoEmail = `demo-${randomId}@sentimentai.demo`;
+      const demoEmail = `demo-${randomId}@sentri.demo`;
       const demoPassword = "Demo123!";
 
       try {

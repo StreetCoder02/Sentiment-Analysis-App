@@ -251,7 +251,7 @@ export default function Index() {
               </motion.div>
               <div>
                 <h1 className="text-2xl font-bold text-white">
-                  SentimentAI
+                  Sentri AI
                 </h1>
                 <p className="text-gray-400">
                   Multilingual Sentiment Analysis Platform
