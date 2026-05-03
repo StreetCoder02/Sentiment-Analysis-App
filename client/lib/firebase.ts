@@ -19,47 +19,70 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
+// Check if Firebase is properly configured
+const hasValidConfig = !!(firebaseConfig.apiKey && firebaseConfig.projectId);
+
 // Initialize Firebase only once
-let app;
-if (getApps().length === 0) {
-  app = initializeApp(firebaseConfig);
-} else {
-  app = getApps()[0];
+let app: any = null;
+let initializationError: Error | null = null;
+
+try {
+  if (hasValidConfig && getApps().length === 0) {
+    app = initializeApp(firebaseConfig);
+    console.log('✅ Firebase initialized successfully');
+  } else if (hasValidConfig && getApps().length > 0) {
+    app = getApps()[0];
+  } else if (!hasValidConfig) {
+    console.warn('⚠️ Firebase credentials not configured - using demo mode');
+  }
+} catch (error) {
+  initializationError = error as Error;
+  console.error('❌ Firebase initialization error:', error);
 }
 
-// Initialize Firebase services
-export const auth = getAuth(app);
-export const db = getFirestore(app);
-export const storage = getStorage(app);
-export const functions = getFunctions(app);
+// Initialize Firebase services (safely)
+export const auth = app ? getAuth(app) : (null as any);
+export const db = app ? getFirestore(app) : (null as any);
+export const storage = app ? getStorage(app) : (null as any);
+export const functions = app ? getFunctions(app) : (null as any);
 
 // Initialize Analytics (only in browser and if supported)
 export let analytics: any = null;
 export let performance: any = null;
 export let messaging: any = null;
 
-if (typeof window !== 'undefined') {
+if (typeof window !== 'undefined' && app) {
   // Analytics
   analyticsSupported().then((supported) => {
-    if (supported) {
-      analytics = getAnalytics(app);
-      console.log('✅ Firebase Analytics initialized');
+    if (supported && app) {
+      try {
+        analytics = getAnalytics(app);
+        console.log('✅ Firebase Analytics initialized');
+      } catch (error) {
+        console.warn('Firebase Analytics not available:', error);
+      }
     }
   }).catch(console.warn);
 
   // Performance
   try {
-    performance = getPerformance(app);
-    console.log('✅ Firebase Performance initialized');
+    if (app) {
+      performance = getPerformance(app);
+      console.log('✅ Firebase Performance initialized');
+    }
   } catch (error) {
     console.warn('Firebase Performance not available:', error);
   }
 
   // Messaging (for push notifications)
   messagingSupported().then((supported) => {
-    if (supported) {
-      messaging = getMessaging(app);
-      console.log('✅ Firebase Messaging initialized');
+    if (supported && app) {
+      try {
+        messaging = getMessaging(app);
+        console.log('✅ Firebase Messaging initialized');
+      } catch (error) {
+        console.warn('Firebase Messaging not available:', error);
+      }
     }
   }).catch(console.warn);
 }

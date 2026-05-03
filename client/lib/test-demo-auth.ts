@@ -56,13 +56,21 @@ export async function testLocalDemoAuth() {
 
 // Auto-run test in development
 if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      if (shouldUseLocalDemoAuth()) {
-        testLocalDemoAuth();
-      }
-    }, 1000);
-  });
+  // Auto-login demo user immediately if Firebase is not configured
+  if (shouldUseLocalDemoAuth()) {
+    console.log('🚀 Auto-initializing demo authentication...');
+    const existingUser = localDemoAuth.getCurrentUser();
+    if (!existingUser) {
+      // Create a demo user immediately
+      localDemoAuth.createDemoUser().then(() => {
+        console.log('✅ Demo user auto-created and ready');
+      }).catch((error) => {
+        console.error('❌ Failed to create demo user:', error);
+      });
+    } else {
+      console.log('✅ Existing demo user found:', existingUser);
+    }
+  }
 }
 
 // Expose test function globally for manual testing

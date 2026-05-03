@@ -9,7 +9,7 @@ interface AuthWrapperProps {
 }
 
 export default function AuthWrapper({ children }: AuthWrapperProps) {
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading, error] = auth ? useAuthState(auth) : [null, false, null];
 
   if (loading) {
     return (

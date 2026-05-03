@@ -7,7 +7,7 @@ import { auth } from "@/lib/firebase";
 
 export default function AuthDebug() {
   const [isOpen, setIsOpen] = useState(false);
-  const [firebaseUser, firebaseLoading, firebaseError] = useAuthState(auth);
+  const [firebaseUser, firebaseLoading, firebaseError] = auth ? useAuthState(auth) : [null, false, null];
   const [localUser, setLocalUser] = useState<any>(null);
   
   useEffect(() => {

@@ -31,7 +31,7 @@ export default function Index() {
   const [activeTab, setActiveTab] = useState("text");
   const [firebaseStatus, setFirebaseStatus] = useState<'checking' | 'accessible' | 'inaccessible'>('checking');
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [user] = useAuthState(auth);
+  const [user] = auth ? useAuthState(auth) : [null];
 
   const handleSignOut = async () => {
     try {
@@ -146,8 +146,8 @@ export default function Index() {
           };
 
           // Only add translatedText if it exists
-          if (data.translatedText) {
-            recordData.translatedText = data.translatedText;
+          if ((data as any).translatedText) {
+            recordData.translatedText = (data as any).translatedText;
           }
 
           // Only add url to metadata if it exists
@@ -295,6 +295,7 @@ export default function Index() {
       </motion.div>
 
       {/* Firebase Status Notification */}
+      <main id="main-content" role="main" aria-labelledby="sentiment-heading">
       {firebaseStatus === 'inaccessible' && (
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -381,6 +382,7 @@ export default function Index() {
                     >
                       <Textarea
                         placeholder="Enter your text here... (supports multiple languages)"
+                        aria-label="Text input for sentiment analysis"
                         value={text}
                         onChange={(e) => setText(e.target.value)}
                         className="min-h-[200px] resize-none bg-rcb-black/30 border-rcb-red/30 text-white placeholder:text-gray-500 focus:border-rcb-red focus:ring-rcb-red"
@@ -428,6 +430,7 @@ export default function Index() {
                             onChange={handleFileSelect}
                             accept="image/*,.pdf"
                             className="hidden"
+                            aria-label="Upload image or PDF for analysis"
                           />
                           <Button
                             className="mt-4 bg-gradient-to-r from-rcb-red to-rcb-red-bright hover:from-rcb-red-bright hover:to-rcb-red-glow"
@@ -452,6 +455,7 @@ export default function Index() {
                         <Input
                           type="url"
                           placeholder="https://example.com/article"
+                          aria-label="URL to analyze"
                           value={url}
                           onChange={(e) => setUrl(e.target.value)}
                           className="pl-11 bg-rcb-black/30 border-rcb-red/30 text-white placeholder:text-gray-500 focus:border-rcb-red focus:ring-rcb-red"
@@ -515,9 +519,9 @@ export default function Index() {
                   exit={{ opacity: 0, y: -50, scale: 0.9 }}
                   transition={{ duration: 0.6, ease: "easeOut" }}
                 >
-                  <Card className="border-rcb-red/30 bg-rcb-black-light/50 backdrop-blur-xl shadow-2xl">
+                  <Card className="border-rcb-red/30 bg-rcb-black-light/50 backdrop-blur-xl shadow-2xl" aria-live="polite">
                     <CardHeader>
-                      <CardTitle className="flex items-center gap-2 text-white">
+                      <CardTitle id="sentiment-heading" className="flex items-center gap-2 text-white">
                         <motion.div
                           animate={{ scale: [1, 1.2, 1] }}
                           transition={{ duration: 2, repeat: Infinity }}
@@ -813,6 +817,7 @@ export default function Index() {
           </motion.div>
         </div>
       </div>
+      </main>
     </div>
   );
 }

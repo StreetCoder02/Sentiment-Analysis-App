@@ -16,7 +16,7 @@ import { UserProfileService, SentimentService, UserProfile, SentimentRecord } fr
 import { FirebaseStorageService, formatFileSize } from "@/lib/firebase-storage";
 
 export default function Dashboard() {
-  const [user] = useAuthState(auth);
+  const [user] = auth ? useAuthState(auth) : [null];
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [recentSentiments, setRecentSentiments] = useState<SentimentRecord[]>([]);
   const [favoritesSentiments, setFavoritesSentiments] = useState<SentimentRecord[]>([]);

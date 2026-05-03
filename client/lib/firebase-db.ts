@@ -128,7 +128,7 @@ export class UserProfileService {
         ...userData
       };
 
-      await updateDoc(userRef, defaultProfile);
+      await updateDoc(userRef, defaultProfile as any);
       
       if (analytics) {
         logEvent(analytics, 'user_profile_created', { uid });

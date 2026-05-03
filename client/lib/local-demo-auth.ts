@@ -169,6 +169,12 @@ export const localDemoAuth = new LocalDemoAuth();
 
 // Helper function to check if local demo auth should be used
 export function shouldUseLocalDemoAuth(): boolean {
-  // Always prefer Firebase - only use local demo as absolute fallback
-  return false;
+  // Check if Firebase credentials are available
+  const hasFirebaseConfig = !!(
+    import.meta.env.VITE_FIREBASE_API_KEY &&
+    import.meta.env.VITE_FIREBASE_PROJECT_ID
+  );
+  
+  // Use local demo auth if Firebase credentials are missing
+  return !hasFirebaseConfig;
 }

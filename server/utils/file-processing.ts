@@ -227,7 +227,7 @@ export async function extractTextFromURL(url: string): Promise<string> {
       }
     });
 
-    const contentType = response.headers['content-type']?.toLowerCase() || '';
+    const contentType = String(response.headers['content-type'] || '').toLowerCase();
     
     if (contentType.includes('text/html')) {
       // Basic HTML text extraction (remove tags)

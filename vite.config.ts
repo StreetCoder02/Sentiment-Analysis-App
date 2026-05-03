@@ -14,13 +14,13 @@ export default defineConfig({
       host: "127.0.0.1" // Explicitly use IPv4 for HMR
     },
     fs: {
-      allow: ["./client", "./shared"],
+      allow: [".", "./client", "./shared"],
       deny: [".env", ".env.*", "*.{crt,pem}", "**/.git/**", "server/**"],
     },
     // Proxy API requests to the API server
     proxy: {
       '/api': {
-        target: 'http://127.0.0.1:3000',
+        target: 'http://127.0.0.1:3001',
         changeOrigin: true,
         secure: false,
         configure: (proxy, _options) => {

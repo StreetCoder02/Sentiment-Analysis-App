@@ -13,7 +13,8 @@ interface UnifiedUser {
 }
 
 export function useUnifiedAuth() {
-  const [firebaseUser, firebaseLoading, firebaseError] = useAuthState(auth);
+  // Only call useAuthState if Firebase is available
+  const [firebaseUser, firebaseLoading, firebaseError] = auth ? useAuthState(auth) : [null, false, null];
   const [localUser, setLocalUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 

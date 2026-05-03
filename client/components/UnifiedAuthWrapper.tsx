@@ -17,7 +17,8 @@ interface AuthState {
 }
 
 export default function UnifiedAuthWrapper({ children }: UnifiedAuthWrapperProps) {
-  const [firebaseUser, firebaseLoading, firebaseError] = useAuthState(auth);
+  // Only call useAuthState if Firebase is available
+  const [firebaseUser, firebaseLoading, firebaseError] = auth ? useAuthState(auth) : [null, false, null];
   const [localUser, setLocalUser] = useState<any>(null);
   const [localLoading, setLocalLoading] = useState(true);
 

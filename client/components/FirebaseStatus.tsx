@@ -12,7 +12,7 @@ export default function FirebaseStatus() {
   const [error, setError] = useState<string>('');
   const [syncing, setSyncing] = useState(false);
   const [localRecordCount, setLocalRecordCount] = useState(0);
-  const [user] = useAuthState(auth);
+  const [user] = auth ? useAuthState(auth) : [null];
 
   useEffect(() => {
     checkFirebaseStatus();

@@ -12,6 +12,7 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import UnifiedAuthWrapper from "./components/UnifiedAuthWrapper";
+import Header from "./components/Header";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { initConsoleCleanup } from "./lib/console-utils";
 import "./lib/test-demo-auth"; // Auto-test demo auth in development
@@ -33,6 +34,7 @@ const App = () => (
             v7_relativeSplatPath: true,
           }}
         >
+          <Header />
           <UnifiedAuthWrapper>
             <Routes>
               <Route path="/" element={<Index />} />

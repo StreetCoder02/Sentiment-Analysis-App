@@ -84,7 +84,7 @@ export class AdvancedAnalytics {
   // Track authentication events
   static trackAuth(method: string, success: boolean, errorCode?: string) {
     if (analytics) {
-      logEvent(analytics, success ? AnalyticsEvents.LOGIN : 'login_failed', {
+      logEvent(analytics, success ? String(AnalyticsEvents.LOGIN) : 'login_failed', {
         method,
         success,
         error_code: errorCode,

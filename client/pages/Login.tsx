@@ -37,7 +37,7 @@ export default function Login() {
   const [success, setSuccess] = useState("");
   const [authTab, setAuthTab] = useState("email");
   const [verificationId, setVerificationId] = useState("");
-  const [user, loading] = useAuthState(auth);
+  const [user, loading] = auth ? useAuthState(auth) : [null, false];
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -349,14 +349,15 @@ export default function Login() {
                         className="relative"
                       >
                         <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                        <Input
-                          type="email"
-                          placeholder="Enter your email"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          className="pl-11 bg-rcb-black/30 border-rcb-red/30 text-white placeholder:text-gray-500 focus:border-rcb-red focus:ring-rcb-red"
-                          required
-                        />
+                          <Input
+                            type="email"
+                            placeholder="Enter your email"
+                            aria-label="Email address"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className="pl-11 bg-rcb-black/30 border-rcb-red/30 text-white placeholder:text-gray-500 focus:border-rcb-red focus:ring-rcb-red"
+                            required
+                          />
                       </motion.div>
 
                       <motion.div
@@ -369,6 +370,7 @@ export default function Login() {
                         <Input
                           type={showPassword ? "text" : "password"}
                           placeholder="Enter your password"
+                          aria-label="Password"
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
                           className="pl-11 pr-11 bg-rcb-black/30 border-rcb-red/30 text-white placeholder:text-gray-500 focus:border-rcb-red focus:ring-rcb-red"
